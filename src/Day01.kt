@@ -1,17 +1,22 @@
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
-    }
+    println("part 1: " + part1())
+    println("part 2: " + part2())
+}
 
-    fun part2(input: List<String>): Int {
-        return input.size
-    }
+private fun part1(): Int {
+    return readInput("Day01")
+        .map { it.toInt() }
+        .windowed(2)
+        .count { (a, b) ->
+            b > a
+        }
+}
 
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
-
-    val input = readInput("Day01")
-    println(part1(input))
-    println(part2(input))
+private fun part2(): Int {
+    return readInput("Day01")
+        .map { it.toInt() }
+        .windowed(4)
+        .count { (a, _, _, d) ->
+            d > a
+        }
 }
