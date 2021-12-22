@@ -15,11 +15,11 @@ private fun readCrabPositions(): IntArray {
 
 private fun getBestPosition(fuelUnits: (steps: Int) -> Int): Int {
     val crabPositions = readCrabPositions()
-    val minPosition = crabPositions.minOrNull()!!
-    val maxPosition = crabPositions.maxOrNull()!!
+    val minPosition = crabPositions.minOf { it }
+    val maxPosition = crabPositions.maxOf { it }
     return (minPosition..maxPosition).asSequence()
         .map { position -> crabPositions.sumOf { fuelUnits((it - position).absoluteValue) } }
-        .minOrNull()!!
+        .minOf { it }
 }
 
 private fun rangeSum(n: Int): Int {
